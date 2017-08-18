@@ -17,9 +17,7 @@ exports.callSusiApi = (slots, session, response) => {
             if(data.answers[0].actions[1].type === 'rss'){
                 viewCount = 'I have no idea about it, sorry.';
             }
-        }
-        else{
-            if(data.answers[0].actions[1].type === 'table'){
+            else if(data.answers[0].actions[1].type === 'table'){
                 console.log(data.answers[0].actions[1].type);
                 var colNames = data.answers[0].actions[1].columns;
                 viewCount = '';
@@ -29,10 +27,10 @@ exports.callSusiApi = (slots, session, response) => {
                     viewCount += data.answers[0].data[i].name+',';
                 }
             }
-            else
-            {
-                viewCount = data.answers[0].actions[0].expression;
-            }
+        }
+        else
+        {
+            viewCount = data.answers[0].actions[0].expression;
         }
         response.say(viewCount);
       })
