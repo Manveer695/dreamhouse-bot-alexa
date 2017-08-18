@@ -19,8 +19,8 @@ exports.callSusiApi = (slots, session, response) => {
             }
         }
         else{
-            if(data.answers[0].actions[0].type === 'table'){
-                var colNames = data.answers[0].actions[0].columns;
+            if(data.answers[0].actions[1].type === 'table'){
+                var colNames = data.answers[0].actions[1].columns;
                 viewCount = '';
                 if((data.answers[0].metadata.count)>2)
                     viewCount += 'Due to message limit, only some results are spoke. They are: ';
