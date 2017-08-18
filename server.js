@@ -28,7 +28,16 @@ app.post('/susiapi', (req, res) => {
             response1.on('end', () => {
                 var data = JSON.parse(body);
                 viewCount = data.answers[0].actions[0].expression;
-                response.say(viewCount);
+                endpoint = "http://api.susi.ai/susi/chat.json?q="+"Get+started"; // ENDPOINT GOES HERE
+                body = "";
+                http.get(endpoint, (response2) => {
+                    response2.on('data', (chunk) => { body += chunk })
+                    response2.on('end', () => {
+                        data = JSON.parse(body);
+                        viewCount += data.answers[0].actions[0].expression;
+                        response.say(viewCount);
+                    })
+                })
             })
         })
     } else if (type === 'IntentRequest') {
