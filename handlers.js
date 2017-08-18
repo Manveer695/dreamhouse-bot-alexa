@@ -14,13 +14,13 @@ exports.callSusiApi = (slots, session, response) => {
             response1.on('end', () => {
                 var data = JSON.parse(body);
                 viewCount = data.answers[0].actions[0].expression;
-                response.say(viewCount);
+                response.say(viewCount,false);
             })
         })
     }
     else if (query === 'stop' || query === 'cancel'){
         viewCount = 'Ok, Susi A.I. chatbot exiting';
-        response.say(viewCount);
+        response.say(viewCount,true);
     }
     else{
         var endpoint = "http://api.susi.ai/susi/chat.json?q="+query; // ENDPOINT GOES HERE
@@ -48,7 +48,7 @@ exports.callSusiApi = (slots, session, response) => {
             {
                 viewCount = data.answers[0].actions[0].expression;
             }
-            response.say(viewCount);
+            response.say(viewCount,true);
           })
         })
     }

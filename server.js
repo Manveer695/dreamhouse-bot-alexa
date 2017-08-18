@@ -35,7 +35,7 @@ app.post('/susiapi', (req, res) => {
                     response2.on('end', () => {
                         data = JSON.parse(body);
                         viewCount += data.answers[0].actions[0].expression;
-                        response.say(viewCount);
+                        response.say(viewCount,false);
                     })
                 })
             })
