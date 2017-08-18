@@ -13,16 +13,9 @@ module.exports = (req, res) => {
     }
 
     let say = (text, shouldEndSession) => {
-
         let outputSpeech = {};
-
-        if (text.indexOf("/>") > 0 || text.indexOf("</")) {
-            outputSpeech.type = 'SSML';
-            outputSpeech.ssml = "<speak>" + text + "</speak>";
-        } else {
-            outputSpeech.type = 'PlainText';
-            outputSpeech.text = text;
-        }
+        outputSpeech.type = 'PlainText';
+        outputSpeech.text = text;
 
         res.json({
             version: req.version,
