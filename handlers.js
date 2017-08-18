@@ -8,7 +8,7 @@ exports.callSusiApi = (slots, session, response) => {
 
     var endpoint = "http://api.susi.ai/susi/chat.json?q="+query; // ENDPOINT GOES HERE
     var body = ""
-    https.get(endpoint, (response) => {
+    http.get(endpoint, (response) => {
       response.on('data', (chunk) => { body += chunk })
       response.on('end', () => {
         var data = JSON.parse(body);
