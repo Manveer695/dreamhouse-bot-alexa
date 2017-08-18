@@ -14,11 +14,11 @@ exports.callSusiApi = (slots, session, response) => {
       response1.on('end', () => {
         var data = JSON.parse(body);
         if(data.answers[0].actions[1]){
+            console.log(data.answers[0].actions[1].type);
             if(data.answers[0].actions[1].type === 'rss'){
                 viewCount = 'I have no idea about it, sorry.';
             }
             else if(data.answers[0].actions[1].type === 'table'){
-                console.log(data.answers[0].actions[1].type);
                 var colNames = data.answers[0].actions[1].columns;
                 viewCount = '';
                 if((data.answers[0].metadata.count)>10)
