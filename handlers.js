@@ -7,7 +7,8 @@ exports.callSusiApi = (slots, session, response) => {
     console.log(query);
 
     var endpoint = "http://api.susi.ai/susi/chat.json?q="+query; // ENDPOINT GOES HERE
-    var body = ""
+    var body = "";
+    var viewCount;
     http.get(endpoint, (response) => {
       response.on('data', (chunk) => { body += chunk })
       response.on('end', () => {
