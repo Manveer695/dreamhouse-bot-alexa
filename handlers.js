@@ -20,6 +20,7 @@ exports.callSusiApi = (slots, session, response) => {
         }
         else{
             if(data.answers[0].actions[1].type === 'table'){
+                console.log(data.answers[0].actions[1].type);
                 var colNames = data.answers[0].actions[1].columns;
                 viewCount = '';
                 if((data.answers[0].metadata.count)>2)
