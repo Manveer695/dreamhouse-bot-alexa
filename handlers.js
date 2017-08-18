@@ -9,9 +9,9 @@ exports.callSusiApi = (slots, session, response) => {
     var endpoint = "http://api.susi.ai/susi/chat.json?q="+query; // ENDPOINT GOES HERE
     var body = "";
     var viewCount;
-    http.get(endpoint, (response) => {
-      response.on('data', (chunk) => { body += chunk })
-      response.on('end', () => {
+    http.get(endpoint, (response1) => {
+      response1.on('data', (chunk) => { body += chunk })
+      response1.on('end', () => {
         var data = JSON.parse(body);
         if(data.answers[0].actions[1]){
             if(data.answers[0].actions[1].type === 'rss'){
