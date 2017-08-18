@@ -22,9 +22,9 @@ exports.callSusiApi = (slots, session, response) => {
             if(data.answers[0].actions[0].type === 'table'){
                 var colNames = data.answers[0].actions[0].columns;
                 viewCount = '';
-                if((data.answers[0].metadata.count)>10)
+                if((data.answers[0].metadata.count)>2)
                     viewCount += 'Due to message limit, only some results are spoke. They are: ';
-                for(var i=0;i<(((data.answers[0].metadata.count)>10)?10:data.answers[0].metadata.count);i++){
+                for(var i=0;i<(((data.answers[0].metadata.count)>2)?2:data.answers[0].metadata.count);i++){
                     viewCount += data.answers[0].data[i].name+',';
                 }
             }
@@ -37,3 +37,4 @@ exports.callSusiApi = (slots, session, response) => {
       })
     })
 };
+
