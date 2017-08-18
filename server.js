@@ -24,13 +24,8 @@ app.post('/susiapi', (req, res) => {
         let handler = handlers[intent];
         if (handler) {
             handler(slots, session, response);
-        } else {
-            response.say("I don't know how to answer that");
         }
-    } else {
-        response.say("Not sure what you mean");
     }
-
 });
 
 app.listen(app.get('port'), function() {
