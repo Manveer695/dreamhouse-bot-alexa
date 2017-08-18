@@ -2,6 +2,7 @@
 
 let express = require('express'),
     bodyParser = require('body-parser'),
+    http = require('http'),
     alexa = require('./alexa'),
     handlers = require('./handlers'),
     app = express();
@@ -19,7 +20,17 @@ app.post('/susiapi', (req, res) => {
         response = alx.response;
 
     if (type === 'LaunchRequest') {
-        response.say("Welcome to SUSI AI");
+        var endpoint = "http://api.susi.ai/susi/chat.json?q="+"Welcome"; // ENDPOINT GOES HERE
+        var body = "";
+        var viewCount;
+        http.get(endpoint, (response1) => {
+            response1.on('data', (chunk) => { body += chunk })
+            response1.on('end', () => {
+                var data = JSON.parse(body);
+                viewCount = data.answers[0].actions[0].expression;
+                response.say(viewCount);
+            })
+        })
     } else if (type === 'IntentRequest') {
         let handler = handlers[intent];
         if (handler) {
